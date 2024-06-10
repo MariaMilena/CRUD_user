@@ -18,8 +18,20 @@ const getUserById = (id) => {
     return users.find(u => u.id === id);
 };
 
+// Atualizar Usuário
+const updateUser = (id, name, email, age) => {
+    const userIndex = users.findIndex(u => u.id === id);
+    if (userIndex === -1) {
+        return null;
+    }
+    const updatedUser = { id, name, email, age };
+    users[userIndex] = updatedUser;
+    return updatedUser;
+};
+
 module.exports = { 
     createUser,
     getUsers,
-    getUserById
+    getUserById,
+    updateUser
 }

@@ -27,8 +27,25 @@ const getUserById = (req, res) => {
     res.json(user);
 };
 
+const updateUser = (req, res) => {
+    const { id } = req.params;
+    const { name, email, age } = req.body;
+
+    const errors = validateUser(name, email, age);
+    if (errors.length > 0) {
+        return res.status(400).json({ errors });
+    }
+
+    const updatedUser = userService.updateUser(id, name, email, age);
+    if (!updatedUser) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    res.json(updatedUser);
+};
+
 module.exports = { 
     createUser,
     getUsers,
-    getUserById
+    getUserById,
+    updateUser
 }
