@@ -18,22 +18,16 @@ Este projeto é uma API RESTful construída com Node.js e Express.js para gerenc
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/CRUD_user.git
-    cd user-management-api
-    ```
-
-2. Instale as dependências do projeto:
-
-    ```bash
-    npm install
+    git clone https://github.com/MariaMilena/CRUD_user.git
+    cd CRUD_user
     ```
 
 ## Executando o Projeto
 
-Para iniciar o servidor de desenvolvimento, execute o seguinte comando:
+Para iniciar o servidor de desenvolvimento, execute o seguinte comando no terminal do Visual Studio Code ou no prompt de comando (certifique-se de estar dentro da pasta do projeto):
 
 ```bash
-npm start
+node src/index.js
 ```
 
 ## Testando a API
