@@ -13,4 +13,12 @@ const createUser = (req, res) => {
     res.status(201).json(user);
 };
 
-module.exports = { createUser }
+const getUsers = (req, res) => {
+    const users = userService.getUsers();
+    res.json(users);
+};
+
+module.exports = { 
+    createUser,
+    getUsers 
+}
