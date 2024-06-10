@@ -13,7 +13,13 @@ const getUsers = () => {
     return users;
 };
 
+// Obter Usuário por ID
+const getUserById = (id) => {
+    return users.find(u => u.id === id);
+};
+
 module.exports = { 
     createUser,
-    getUsers 
+    getUsers,
+    getUserById
 }

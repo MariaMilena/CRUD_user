@@ -18,7 +18,17 @@ const getUsers = (req, res) => {
     res.json(users);
 };
 
+const getUserById = (req, res) => {
+    const { id } = req.params;
+    const user = userService.getUserById(id);
+    if (!user) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    res.json(user);
+};
+
 module.exports = { 
     createUser,
-    getUsers 
+    getUsers,
+    getUserById
 }
