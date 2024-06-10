@@ -29,9 +29,20 @@ const updateUser = (id, name, email, age) => {
     return updatedUser;
 };
 
+// Deletar Usuário
+const deleteUser = (id) => {
+    const userIndex = users.findIndex(u => u.id === id);
+    if (userIndex === -1) {
+        return false;
+    }
+    users.splice(userIndex, 1);
+    return true;
+};
+
 module.exports = { 
     createUser,
     getUsers,
     getUserById,
-    updateUser
+    updateUser,
+    deleteUser
 }

@@ -43,9 +43,19 @@ const updateUser = (req, res) => {
     res.json(updatedUser);
 };
 
+const deleteUser = (req, res) => {
+    const { id } = req.params;
+    const success = userService.deleteUser(id);
+    if (!success) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    res.status(204).send();
+};
+
 module.exports = { 
     createUser,
     getUsers,
     getUserById,
-    updateUser
+    updateUser,
+    deleteUser
 }
