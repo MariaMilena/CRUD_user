@@ -18,16 +18,16 @@ const getUsers = async (req, res) => {
     res.json(users);
 };
 
-const getUserById = (req, res) => {
+const getUserById = async (req, res) => {
     const { id } = req.params;
-    const user = userService.getUserById(id);
+    const user = await userService.getUserById(id);
     if (!user) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
     }
     res.json(user);
 };
 
-const updateUser = (req, res) => {
+const updateUser = async (req, res) => {
     const { id } = req.params;
     const { name, email, age } = req.body;
 
@@ -36,16 +36,16 @@ const updateUser = (req, res) => {
         return res.status(400).json({ errors });
     }
 
-    const updatedUser = userService.updateUser(id, name, email, age);
+    const updatedUser = await userService.updateUser(id, req.body);
     if (!updatedUser) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
     }
     res.json(updatedUser);
 };
 
-const deleteUser = (req, res) => {
+const deleteUser = async (req, res) => {
     const { id } = req.params;
-    const success = userService.deleteUser(id);
+    const success = await userService.deleteUser(id);
     if (!success) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
     }

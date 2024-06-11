@@ -1,5 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
-let users = [];
 const User = require('../models/userModels');
 
 // Criar Usuário
@@ -13,29 +11,26 @@ const getUsers = async () => {
 };
 
 // Obter Usuário por ID
-const getUserById = (id) => {
-    return users.find(u => u.id === id);
+const getUserById = async (id) => {
+    return await User.findByPk(id);
 };
 
 // Atualizar Usuário
-const updateUser = (id, name, email, age) => {
-    const userIndex = users.findIndex(u => u.id === id);
-    if (userIndex === -1) {
-        return null;
+const updateUser = async (id, userData) => {
+    const user = await User.findByPk(id);
+    if (user) {
+        return await user.update(userData);
     }
-    const updatedUser = { id, name, email, age };
-    users[userIndex] = updatedUser;
-    return updatedUser;
 };
 
 // Deletar Usuário
-const deleteUser = (id) => {
-    const userIndex = users.findIndex(u => u.id === id);
-    if (userIndex === -1) {
-        return false;
+const deleteUser = async (id) => {
+    const user = await User.findByPk(id);
+    if (user) {
+        await user.destroy();
+        return true;
     }
-    users.splice(userIndex, 1);
-    return true;
+    return false;
 };
 
 module.exports = { 
