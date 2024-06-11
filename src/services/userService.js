@@ -3,20 +3,11 @@ let users = [];
 const User = require('../models/userModels');
 
 // Criar Usuário
-// const createUser = (name, email, age) => {
-//     const user = { id: uuidv4(), name, email, age };
-//     users.push(user);
-//     return user;
-// };
 const createUser = async (userData) => {
     return await User.create(userData);
 };
 
 // Obter Usuários
-// const getUsers = () => {
-//     return users;
-// };
-
 const getUsers = async () => {
     return await User.findAll();
 };

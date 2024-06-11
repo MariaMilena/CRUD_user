@@ -13,8 +13,8 @@ const createUser = async (req, res) => {
     return res.status(200).json(user);
 };
 
-const getUsers = (req, res) => {
-    const users = userService.getUsers();
+const getUsers = async (req, res) => {
+    const users = await userService.getUsers();
     res.json(users);
 };
 
