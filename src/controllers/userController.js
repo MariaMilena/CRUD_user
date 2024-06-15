@@ -1,15 +1,10 @@
-const { validateUser } = require('../validations/userValidation');
+const validateUser = require('../validations/userValidation');
 const userService = require('../services/userService');
 
 const createUser = async (req, res) => {
-    const { name, email, age } = req.body;
+    const userValidate = validateUser.parse(req.body);
 
-    const errors = validateUser(name, email, age);
-    if (errors.length > 0) {
-        return res.status(400).json({ errors });
-    }
-
-    const user = await userService.createUser(req.body);
+    const user = await userService.createUser(userValidate);
     return res.status(200).json(user);
 };
 
@@ -29,14 +24,10 @@ const getUserById = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { id } = req.params;
-    const { name, email, age } = req.body;
 
-    const errors = validateUser(name, email, age);
-    if (errors.length > 0) {
-        return res.status(400).json({ errors });
-    }
+    const userValidate = validateUser.parse(req.body);;
 
-    const updatedUser = await userService.updateUser(id, req.body);
+    const updatedUser = await userService.updateUser(id, userValidate);
     if (!updatedUser) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
     }
